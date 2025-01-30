@@ -31,7 +31,7 @@ local bmi_variant(model_type_name, main_output_variable, library_name, library_d
     model_type_name: model_type_name,
     main_output_variable: main_output_variable,
     [if !std.isEmpty(init_config_file_pattern) then 'init_config']: init_config_file_pattern,
-    [if !std.isEmpty(registration_function) then registration_function]: registration_function,
+    [if !std.isEmpty(registration_function) then 'registration_function']: registration_function,
   },
 };
 
