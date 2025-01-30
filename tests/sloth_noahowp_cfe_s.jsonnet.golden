@@ -60,7 +60,7 @@
                "model_params": { },
                "model_type_name": "CFE",
                "name": "bmi_c",
-               "register_bmi_cfe": "register_bmi_cfe",
+               "registration_function": "register_bmi_cfe",
                "variables_names_map": {
                   "atmosphere_water__liquid_equivalent_precipitation_rate": "QINSUR",
                   "ice_fraction_schaake": "sloth_ice_fraction_schaake",
