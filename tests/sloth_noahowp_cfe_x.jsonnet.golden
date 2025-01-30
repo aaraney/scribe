@@ -1,0 +1,76 @@
+{
+   "name": "bmi_multi",
+   "params": {
+      "allow_exceed_end_time": true,
+      "forcing_file": "",
+      "init_config": "",
+      "main_output_variable": "Q_OUT",
+      "model_type_name": "SLOTH_NoahOWP_CFE",
+      "modules": [
+         {
+            "name": "bmi_c++",
+            "params": {
+               "allow_exceed_end_time": true,
+               "forcing_file": "",
+               "init_config": "/dev/null",
+               "library_file": "libslothmodel",
+               "main_output_variable": "z",
+               "model_params": { },
+               "model_parms": {
+                  "sloth_ice_fraction_schaake(1,double,m,node)": 0,
+                  "sloth_ice_fraction_xinanjiang(1,double,1,node)": 0,
+                  "sloth_smp(1,double,1,node)": 0
+               },
+               "model_type_name": "SLOTH",
+               "name": "bmi_c++",
+               "variables_names_map": { }
+            }
+         },
+         {
+            "name": "bmi_fortran",
+            "params": {
+               "allow_exceed_end_time": true,
+               "forcing_file": "",
+               "init_config": "NoahOWP_{{id}}.namelist",
+               "library_file": "libsurfacebmi",
+               "main_output_variable": "QINSUR",
+               "model_params": { },
+               "model_type_name": "NoahOWP",
+               "name": "bmi_fortran",
+               "variables_names_map": {
+                  "LWDN": "land_surface_radiation~incoming~longwave__energy_flux",
+                  "PRCPNONC": "APCP_surface",
+                  "Q2": "atmosphere_air_water~vapor__relative_saturation",
+                  "SFCPRS": "land_surface_air__pressure",
+                  "SFCTMP": "land_surface_air__temperature",
+                  "SOLDN": "land_surface_radiation~incoming~shortwave__energy_flux",
+                  "UU": "land_surface_wind__x_component_of_velocity",
+                  "VV": "land_surface_wind__y_component_of_velocity"
+               }
+            }
+         },
+         {
+            "name": "bmi_c",
+            "params": {
+               "allow_exceed_end_time": true,
+               "forcing_file": "",
+               "init_config": "CFE_NASH_X_{{id}}.ini",
+               "library_file": "libcfebmi",
+               "main_output_variable": "Q_OUT",
+               "model_params": { },
+               "model_type_name": "CFE",
+               "name": "bmi_c",
+               "register_bmi_cfe": "register_bmi_cfe",
+               "variables_names_map": {
+                  "atmosphere_water__liquid_equivalent_precipitation_rate": "QINSUR",
+                  "ice_fraction_schaake": "sloth_ice_fraction_schaake",
+                  "ice_fraction_xinanjiang": "sloth_ice_fraction_xinanjiang",
+                  "soil_moisture_profile": "sloth_smp",
+                  "water_potential_evaporation_flux": "EVAPOTRANS"
+               }
+            }
+         }
+      ],
+      "name": "bmi_multi"
+   }
+}
