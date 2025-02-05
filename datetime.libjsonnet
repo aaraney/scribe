@@ -16,30 +16,40 @@ local daysInMonth = [
 
 {
   parseDatetime(dt)::
+    // parse naive UTC time in ISO Format (e.g. '2020-01-01')
     // parse naive UTC time in ISO Format (e.g. '2020-01-01 00:00')
+    // parse naive UTC time in ISO Format (e.g. '2020-01-01 00:00:00')
     // @param dt string
-    // @return { year: int, month: int, day: int, hour: int, minute: int }
-    assert std.length(dt) == std.length('2020-01-01 00:00');
+    // @return { year: int, month: int, day: int, hour: int, minute: int, second: int }
+    assert std.length(dt) >= std.length('2020-01-01');
+    assert std.length(dt) <= std.length('2020-01-01 00:00:00');
     local parse(start, len) =
       local sub = std.substr(dt, start, len);
       std.parseInt(sub);
 
+    local maybeParse(start, len) =
+      if std.length(dt) >= start + len then
+        parse(start, len)
+      else 0;
+
     local year = parse(0, 4);
     local month = parse(5, 2);
     local day = parse(8, 2);
-    local hour = parse(11, 2);
-    local minute = parse(14, 2);
-    { year: year, month: month, day: day, hour: hour, minute: minute },
+    local hour = maybeParse(11, 2);
+    local minute = maybeParse(14, 2);
+    local second = maybeParse(17, 2);
+    { year: year, month: month, day: day, hour: hour, minute: minute, second: second },
 
   timestamp(datetime_object)::
     // return seconds since unix epoch
-    // @param datetime_object { year: int, month: int, day: int, hour: int, minute: int }
+    // @param datetime_object { year: int, month: int, day: int, hour: int, minute: int, second: int }
     // @return int
     local year = datetime_object.year;
     local month = datetime_object.month;
     local day = datetime_object.day;
     local hour = datetime_object.hour;
     local minute = datetime_object.minute;
+    local second = datetime_object.second;
 
     // do not support prior to epoch
     assert year >= 1970;
@@ -62,7 +72,7 @@ local daysInMonth = [
                            + if self.isLeap(year) && month > 2 then 1 else 0;
       daysThisYear * 24 * 60 * 60;
 
-    local secondsToday = (hour * 60 * 60) + (minute * 60);
+    local secondsToday = (hour * 60 * 60) + (minute * 60) + second;
     local total_seconds = secondsSinceEpoch + secondsElapsedInCurrentYear + secondsToday;
     total_seconds,
 
