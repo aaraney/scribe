@@ -15,15 +15,13 @@
                "init_config": "/dev/null",
                "library_file": "libslothmodel",
                "main_output_variable": "z",
-               "model_params": { },
                "model_parms": {
                   "sloth_ice_fraction_schaake(1,double,m,node)": 0,
                   "sloth_ice_fraction_xinanjiang(1,double,1,node)": 0,
                   "sloth_smp(1,double,1,node)": 0
                },
                "model_type_name": "SLOTH",
-               "name": "bmi_c++",
-               "variables_names_map": { }
+               "name": "bmi_c++"
             }
          },
          {
@@ -34,7 +32,6 @@
                "init_config": "NoahOWP_{{id}}.namelist",
                "library_file": "libsurfacebmi",
                "main_output_variable": "QINSUR",
-               "model_params": { },
                "model_type_name": "NoahOWP",
                "name": "bmi_fortran",
                "variables_names_map": {
@@ -57,7 +54,6 @@
                "init_config": "CFE_NASH_X_{{id}}.ini",
                "library_file": "libcfebmi",
                "main_output_variable": "Q_OUT",
-               "model_params": { },
                "model_type_name": "CFE",
                "name": "bmi_c",
                "registration_function": "register_bmi_cfe",

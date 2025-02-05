@@ -15,7 +15,6 @@
                "init_config": "NoahOWP_{{id}}.namelist",
                "library_file": "/dmod/lib_dir/libsurfacebmi",
                "main_output_variable": "QINSUR",
-               "model_params": { },
                "model_type_name": "NoahOWP",
                "name": "bmi_fortran",
                "variables_names_map": {
@@ -38,7 +37,6 @@
                "init_config": "Topmodel_{{id}}.dat",
                "library_file": "/dmod/lib_dir/libtopmodelbmi",
                "main_output_variable": "Qout",
-               "model_params": { },
                "model_type_name": "TOPMODEL",
                "name": "bmi_c",
                "registration_function": "register_bmi_topmodel",
