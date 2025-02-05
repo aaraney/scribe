@@ -15,8 +15,6 @@ local bmi_base = {
     init_config: '',
     allow_exceed_end_time: true,
     main_output_variable: errors.must_override('params.main_output_variable'),
-    variables_names_map: {},
-    model_params: {},
   },
 };
 
