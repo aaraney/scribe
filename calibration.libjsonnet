@@ -67,27 +67,31 @@ local model = {
       eval_params+: eval_params,
       val_params+: val_params,
     }),
-  EvalParam(eval_start, eval_stop, objective='kling_gupta'):: {
+  EvalParam(eval_start, eval_stop, objective='kling_gupta', target='min'):: {
     // @param eval_start string in naive UTC time in ISO Format (e.g. '2020-01-01 00:00')
     // @param eval_stop  string in naive UTC time in ISO Format (e.g. '2020-01-01 00:00')
     // @param objective  string "kling_gupta", "nnse", "custom", "single_peak", "volume"
+    // @param target     string "min" "max"
     objective: objective,
     evaluation_start: eval_start,
     evaluation_stop: eval_stop,
+    target: target,
   },
-  ValParam(eval_start, eval_stop, objective='kling_gupta', sim_start=null, sim_stop=null):: {
+  ValParam(eval_start, eval_stop, objective='kling_gupta', sim_start=null, sim_stop=null, target='min'):: {
     // @param eval_start string in naive UTC time in ISO Format (e.g. '2020-01-01 00:00')
     // @param eval_stop  string in naive UTC time in ISO Format (e.g. '2020-01-01 00:00')
     // @param objective  string "kling_gupta", "nnse", "custom", "single_peak", "volume"
     // @param sim_start  optional string in naive UTC time in ISO Format (e.g. '2020-01-01 00:00')
     // @param sim_stop   optional string in naive UTC time in ISO Format (e.g. '2020-01-01 00:00')
     // @param objective  string "kling_gupta", "nnse", "custom", "single_peak", "volume"
+    // @param target     string "min" "max"
     evaluation_start: eval_start,
     evaluation_stop: eval_stop,
     [if sim_start == null then null else 'sim_start']: sim_start,
     [if sim_stop == null then null else 'sim_stop']: sim_stop,
     // choices are "kling_gupta", "nnse", "custom", "single_peak", "volume"
     objective: objective,
+    target: target,
   },
 };
 
