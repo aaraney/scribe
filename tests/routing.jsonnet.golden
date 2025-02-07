@@ -45,7 +45,7 @@
             "cs": "ChSlp",
             "downstream": "toid",
             "dx": "Length_m",
-            "gages": "rl_gages",
+            "gages": "gage",
             "key": "id",
             "musk": "MusK",
             "musx": "MusX",
@@ -54,7 +54,7 @@
             "s0": "So",
             "tw": "TopWdth",
             "twcc": "TopWdthCC",
-            "waterbody": "rl_NHDWaterbodyComID"
+            "waterbody": "WaterbodyID"
          },
          "geo_file_path": "/something/else/other_hf.gpkg",
          "network_type": "HYFeaturesNetwork",
