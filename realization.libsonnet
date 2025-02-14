@@ -1,5 +1,5 @@
 local realization_base = {
-  local errors = import 'errors.libjsonnet',
+  local errors = import 'errors.libsonnet',
   formulation:: errors.must_override('formulation (formulation)'),
   forcing:: errors.must_override('forcing (forcing)'),
   global: {
@@ -10,7 +10,7 @@ local realization_base = {
   routing: errors.must_override('routing (routing)'),
 };
 
-local pathlib = import 'pathlib.libjsonnet';
+local pathlib = import 'pathlib.libsonnet';
 
 {
   Realization(formulation=null, forcing=self.Forcing(''), time=self.Time('', ''), routing=self.Routing('')):: {

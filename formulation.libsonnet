@@ -1,5 +1,5 @@
 local bmi_base = {
-  local errors = import 'errors.libjsonnet',
+  local errors = import 'errors.libsonnet',
   name: errors.must_override('name'),
   library_dir:: '',
   library_name:: errors.must_override('::library_name'),
@@ -33,7 +33,7 @@ local bmi_variant(model_type_name, main_output_variable, library_name, library_d
   },
 };
 
-local pathlib = import 'pathlib.libjsonnet';
+local pathlib = import 'pathlib.libsonnet';
 
 {
   bmi_fortran:: bmi_type('fortran'),
@@ -44,7 +44,7 @@ local pathlib = import 'pathlib.libjsonnet';
 
   MultiBmi(modules, main_output_variable, model_type_name=''):: {
     // convenience function for constructing a MultiBmi formulation from an
-    // array of formulations. See `known_formulations.libjsonnet` for examples.
+    // array of formulations. See `known_formulations.libsonnet` for examples.
     // @param modules array
     // @param main_output_variable string
     // @param model_type_name optional string
@@ -71,8 +71,8 @@ local pathlib = import 'pathlib.libjsonnet';
     // apply a function over the formulations in a MultiBmi formulation
     //
     // example:
-    // local f = import 'formulation.libjsonnet';
-    // local known_formulations = import 'known_formulations.libjsonnet';
+    // local f = import 'formulation.libsonnet';
+    // local known_formulations = import 'known_formulations.libsonnet';
     // multi_bmi_map(
     //   function(mod)
     //     mod + f.with_library_dir('/dmod/lib_dir')
@@ -93,8 +93,8 @@ local pathlib = import 'pathlib.libjsonnet';
     // replace a formulation's `library_name` _directory_
     //
     // example:
-    // local f = import 'formulation.libjsonnet';
-    // local known_formulations = import 'known_formulations.libjsonnet';
+    // local f = import 'formulation.libsonnet';
+    // local known_formulations = import 'known_formulations.libsonnet';
     // known_formulations.cfe_s + f.with_library_dir('/usr/lib')
     //
     library_dir:: library_dir,
@@ -103,8 +103,8 @@ local pathlib = import 'pathlib.libjsonnet';
   with_variables_names_map(vnm):: {
     // replace `variables_names_map`
     // example:
-    // local f = import 'formulation.libjsonnet';
-    // local known_formulations = import 'known_formulations.libjsonnet';
+    // local f = import 'formulation.libsonnet';
+    // local known_formulations = import 'known_formulations.libsonnet';
     // known_formulations.cfe_s + f.with_variable_names_map({
     //    water_potential_evaporation_flux: 'EVAPOTRANS',
     // })

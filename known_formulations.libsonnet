@@ -1,4 +1,4 @@
-local r = import './formulation.libjsonnet';
+local r = import './formulation.libsonnet';
 
 
 local noahowp = r.bmi_fortran

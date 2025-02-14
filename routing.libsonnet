@@ -5,9 +5,9 @@ local routing_nts(total_seconds, timestep=300) =
   // @return int
   std.floor(total_seconds / timestep);
 
-local datetime = import 'datetime.libjsonnet';
-local pathlib = import 'pathlib.libjsonnet';
-local errors = import 'errors.libjsonnet';
+local datetime = import 'datetime.libsonnet';
+local pathlib = import 'pathlib.libsonnet';
+local errors = import 'errors.libsonnet';
 
 local routing_base = {
   start_time:: errors.must_override('start_time (string)'),
@@ -110,7 +110,7 @@ local routing_base = {
   with_hf(hf)::
     // replace the hydrofabric path used in a Routing configuration.
     // example:
-    // local routing = include 'routing.libjsonnet'
+    // local routing = include 'routing.libsonnet'
     // local config = Routing("bad_hf.gpkg", "2020-01-01 00:00",  "2025-01-01 00:00");
     // config + with_hf('good_hf.gpkg')
     //
@@ -121,7 +121,7 @@ local routing_base = {
   with_hf_dir(dir):: {
     // change the _directory_ of the hydrofabric path used in a Routing configuration.
     // example:
-    // local routing = include 'routing.libjsonnet'
+    // local routing = include 'routing.libsonnet'
     // local config = Routing('hf.gpkg', '2020-01-01 00:00',  '2025-01-01 00:00');
     // config + with_hf_dir('/home/user')
     //
@@ -132,7 +132,7 @@ local routing_base = {
   with_hf_basename(basename):: {
     // change the _basename_ of the hydrofabric path used in a Routing configuration.
     // example:
-    // local routing = include 'routing.libjsonnet'
+    // local routing = include 'routing.libsonnet'
     // local config = Routing('/home/user/hf.gpkg', '2020-01-01 00:00',  '2025-01-01 00:00');
     // config + with_hf_basename('other_hf.gpkg')
     //

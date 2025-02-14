@@ -1,5 +1,5 @@
-local f = import '../formulation.libjsonnet';
-local known_formulations = import '../known_formulations.libjsonnet';
+local f = import '../formulation.libsonnet';
+local known_formulations = import '../known_formulations.libsonnet';
 
 local multi_bmi_map(func, formulation) =
   local mods = f.unwrap(formulation);
