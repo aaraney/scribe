@@ -124,14 +124,14 @@ local pathlib = import 'pathlib.libsonnet';
   with_model_params(model_params):: {
     // replace `model_params`
     params+: {
-      model_parms: model_params,
+      model_params: model_params,
     },
   },
 
   extend_model_params(model_params):: {
     //  like `with_model_params` however existing `model_params` are persisted.
     params+: {
-      model_parms+: model_params,
+      model_params+: model_params,
     },
   },
 
