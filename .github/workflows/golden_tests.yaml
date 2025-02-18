@@ -1,0 +1,37 @@
+name: golden tests
+
+on:
+  push:
+    paths:
+    - '**.jsonnet'
+    - '**.libsonnet'
+    - '**.py'
+  pull_request:
+    paths:
+    - '**.jsonnet'
+    - '**.libsonnet'
+    - '**.py'
+  # enable manual run
+  workflow_dispatch:
+
+jobs:
+  unit_tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - uses: actions/setup-go@v5
+      with:
+        go-version: 'stable'
+    - name: Build and Install jsonnet
+      run: |
+        go install github.com/google/go-jsonnet/cmd/jsonnet@latest
+        jsonnet --version
+    - name: Run Golden Tests
+      run: |
+        tests/run_tests.py
