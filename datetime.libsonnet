@@ -76,6 +76,20 @@ local daysInMonth = [
     local total_seconds = secondsSinceEpoch + secondsElapsedInCurrentYear + secondsToday;
     total_seconds,
 
+  iso8601Datetime(datetime_object)::
+    // return formatted ISO 8601 datetime string (e.g. '2020-01-01 00:00:00')
+    // @param datetime_object { year: int, month: int, day: int, hour: int, minute: int, second: int }
+    // @return string
+    local maybeZeroPad(v) =
+      if v < 10 then '0' + v else '' + v;
+    local year = datetime_object.year;
+    local month = maybeZeroPad(datetime_object.month);
+    local day = maybeZeroPad(datetime_object.day);
+    local hour = maybeZeroPad(datetime_object.hour);
+    local minute = maybeZeroPad(datetime_object.minute);
+    local second = maybeZeroPad(datetime_object.second);
+    year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second,
+
   isLeap(year)::
     // return if year a leap year
     // @param year int
