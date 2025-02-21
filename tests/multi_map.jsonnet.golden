@@ -19,7 +19,7 @@
                "name": "bmi_fortran",
                "variables_names_map": {
                   "LWDN": "land_surface_radiation~incoming~longwave__energy_flux",
-                  "PRCPNONC": "APCP_surface",
+                  "PRCPNONC": "atmosphere_water__liquid_equivalent_precipitation_rate",
                   "Q2": "atmosphere_air_water~vapor__relative_saturation",
                   "SFCPRS": "land_surface_air__pressure",
                   "SFCTMP": "land_surface_air__temperature",
