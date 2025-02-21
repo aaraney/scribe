@@ -34,7 +34,7 @@ local sloth_nom_cfe(cfe_variant) =
   };
   local sloth_mod = sloth + r.with_model_params(sloth_model_params);
   local noahowp_vnm = {
-    PRCPNONC: 'APCP_surface',
+    PRCPNONC: 'atmosphere_water__liquid_equivalent_precipitation_rate',
     Q2: 'atmosphere_air_water~vapor__relative_saturation',
     SFCTMP: 'land_surface_air__temperature',
     UU: 'land_surface_wind__x_component_of_velocity',
@@ -57,7 +57,7 @@ local sloth_nom_cfe(cfe_variant) =
 
 local noahowp_topmodel =
   local noahowp_vnm = {
-    PRCPNONC: 'APCP_surface',
+    PRCPNONC: 'atmosphere_water__liquid_equivalent_precipitation_rate',
     Q2: 'atmosphere_air_water~vapor__relative_saturation',
     SFCTMP: 'land_surface_air__temperature',
     UU: 'land_surface_wind__x_component_of_velocity',
