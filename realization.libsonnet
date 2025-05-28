@@ -19,7 +19,7 @@ local pathlib = import 'pathlib.libsonnet';
       forcing: forcing,
     },
     time: time,
-    routing: routing,
+    [if routing == null then null else 'routing']: routing,
   },
 
   with_formulation(formulation):: {
