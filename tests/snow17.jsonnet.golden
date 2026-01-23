@@ -1,0 +1,12 @@
+{
+   "name": "bmi_fortran",
+   "params": {
+      "allow_exceed_end_time": true,
+      "forcing_file": "",
+      "init_config": "Snow17_{{id}}.namelist",
+      "library_file": "libsnow17bmi",
+      "main_output_variable": "raim",
+      "model_type_name": "Snow17",
+      "name": "bmi_fortran"
+   }
+}
