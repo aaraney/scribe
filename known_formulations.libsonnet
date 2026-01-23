@@ -26,6 +26,24 @@ local cfe = r.bmi_c
 local cfe_s = cfe + r.with_init_config('CFE_NASH_S_{{id}}.ini');
 local cfe_x = cfe + r.with_init_config('CFE_NASH_X_{{id}}.ini');
 
+local sacsma = r.bmi_fortran
+               + r.bmi_variant('SacSMA',
+                               'tci',
+                               'libsacbmi',
+                               init_config_file_pattern='SacSma_{{id}}.namelist');
+
+local snow17 = r.bmi_fortran
+               + r.bmi_variant('Snow17',
+                               'raim',
+                               'libsnow17bmi',
+                               init_config_file_pattern='Snow17_{{id}}.namelist');
+
+local casam = r.bmi_cpp
+               + r.bmi_variant('LGAR',
+                               'precipitation_rate',
+                               'liblasambmi',
+                               init_config_file_pattern='Casam_{{id}}.namelist');
+
 local sloth_nom_cfe(cfe_variant) =
   local sloth_model_params = {
     'sloth_ice_fraction_schaake(1,double,m,node)': 0.0,
@@ -91,4 +109,7 @@ local noahowp_topmodel =
   sloth_noahowp_cfe_s:: sloth_nom_cfe(cfe_s),
   sloth_noahowp_cfe_x:: sloth_nom_cfe(cfe_x),
   noahowp_topmodel:: noahowp_topmodel,
+  sacsma:: sacsma,
+  snow17:: snow17,
+  casam:: casam,
 }
