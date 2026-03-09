@@ -1,0 +1,13 @@
+{
+   "name": "bmi_c",
+   "params": {
+      "allow_exceed_end_time": true,
+      "forcing_file": "",
+      "init_config": "PET_{{id}}.ini",
+      "library_file": "libpetbmi",
+      "main_output_variable": "water_potential_evaporation_flux",
+      "model_type_name": "PET",
+      "name": "bmi_c",
+      "registration_function": "register_bmi_pet"
+   }
+}

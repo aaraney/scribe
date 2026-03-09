@@ -44,6 +44,12 @@ local casam = r.bmi_cpp
                                'liblasambmi',
                                init_config_file_pattern='Casam_{{id}}.namelist');
 
+local pet = r.bmi_c + r.bmi_variant('PET',
+                                    'water_potential_evaporation_flux',
+                                    'libpetbmi',
+                                    init_config_file_pattern='PET_{{id}}.ini',
+                                    registration_function='register_bmi_pet',);
+
 local sloth_nom_cfe(cfe_variant) =
   local sloth_model_params = {
     'sloth_ice_fraction_schaake(1,double,m,node)': 0.0,
@@ -112,4 +118,5 @@ local noahowp_topmodel =
   sacsma:: sacsma,
   snow17:: snow17,
   casam:: casam,
+  pet:: pet,
 }
