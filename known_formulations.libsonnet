@@ -39,10 +39,10 @@ local snow17 = r.bmi_fortran
                                init_config_file_pattern='Snow17_{{id}}.namelist');
 
 local casam = r.bmi_cpp
-               + r.bmi_variant('LGAR',
-                               'precipitation_rate',
-                               'liblasambmi',
-                               init_config_file_pattern='Casam_{{id}}.namelist');
+              + r.bmi_variant('LGAR',
+                              'precipitation_rate',
+                              'liblasambmi',
+                              init_config_file_pattern='Casam_{{id}}.namelist');
 
 local pet = r.bmi_c + r.bmi_variant('PET',
                                     'water_potential_evaporation_flux',
