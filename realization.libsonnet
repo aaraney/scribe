@@ -38,6 +38,9 @@ local pathlib = import 'pathlib.libsonnet';
   with_routing(routing):: {
     routing: routing,
   },
+  with_catchment_output(bool):: {
+    disable_catchment_output: !bool,
+  },
 
   Time(start_time, end_time):: {
     start_time: start_time,
