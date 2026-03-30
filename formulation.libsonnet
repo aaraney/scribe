@@ -121,6 +121,13 @@ local pathlib = import 'pathlib.libsonnet';
     },
   },
 
+  exchange_variables_names_map(mod, vnm)::
+    // like `extend_variables_names_map` however only existing mappings are updated.
+    local mod_vnm = std.get(mod.params, 'variables_names_map', default={});
+    local utils = import 'utils.libsonnet';
+    local union = utils.objectReplace(mod_vnm, vnm);
+    $.extend_variables_names_map(union),
+
   with_model_params(model_params):: {
     // replace `model_params`
     params+: {
