@@ -1,0 +1,19 @@
+{
+   "new": {
+      "a": {
+         "merged": "in",
+         "still": "here"
+      },
+      "b": "replaced",
+      "c": 3
+   },
+   "old": {
+      "a": {
+         "still": "here"
+      },
+      "b": {
+         "im": "gone"
+      },
+      "c": 3
+   }
+}
