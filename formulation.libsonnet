@@ -126,7 +126,9 @@ local pathlib = import 'pathlib.libsonnet';
     local mod_vnm = std.get(mod.params, 'variables_names_map', default={});
     local utils = import 'utils.libsonnet';
     local union = utils.objectReplace(mod_vnm, vnm);
-    $.extend_variables_names_map(union),
+    if std.length(union) > 0
+    then $.extend_variables_names_map(union)
+    else mod,
 
   with_model_params(model_params):: {
     // replace `model_params`

@@ -10,5 +10,6 @@
       "b": "old_b",
       "c": "old_c",
       "still": "here"
-   }
+   },
+   "still_empty": true
 }
