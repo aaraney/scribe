@@ -3,7 +3,7 @@
    "params": {
       "allow_exceed_end_time": true,
       "forcing_file": "",
-      "init_config": "Casam_{{id}}.namelist",
+      "init_config": "Casam_{{id}}.ini",
       "library_file": "liblasambmi",
       "main_output_variable": "precipitation_rate",
       "model_type_name": "LGAR",

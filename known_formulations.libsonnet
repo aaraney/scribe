@@ -42,7 +42,7 @@ local casam = r.bmi_cpp
               + r.bmi_variant('LGAR',
                               'precipitation_rate',
                               'liblasambmi',
-                              init_config_file_pattern='Casam_{{id}}.namelist');
+                              init_config_file_pattern='Casam_{{id}}.ini');
 
 local pet = r.bmi_c + r.bmi_variant('PET',
                                     'water_potential_evaporation_flux',
