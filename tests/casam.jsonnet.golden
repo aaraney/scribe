@@ -5,7 +5,7 @@
       "forcing_file": "",
       "init_config": "Casam_{{id}}.ini",
       "library_file": "liblasambmi",
-      "main_output_variable": "precipitation_rate",
+      "main_output_variable": "total_discharge",
       "model_type_name": "LGAR",
       "name": "bmi_c++"
    }

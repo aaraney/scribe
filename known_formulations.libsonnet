@@ -40,7 +40,7 @@ local snow17 = r.bmi_fortran
 
 local casam = r.bmi_cpp
               + r.bmi_variant('LGAR',
-                              'precipitation_rate',
+                              'total_discharge',
                               'liblasambmi',
                               init_config_file_pattern='Casam_{{id}}.ini');
 
