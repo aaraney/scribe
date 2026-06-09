@@ -330,7 +330,7 @@ local sacsma = {
     },
     {
       init: 0.05,
-      max: 0.05,
+      max: 0.5,
       min: 0,
       name: 'pfree',
     },
