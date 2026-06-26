@@ -1,0 +1,52 @@
+{
+   "name": "bmi_multi",
+   "params": {
+      "allow_exceed_end_time": true,
+      "forcing_file": "",
+      "init_config": "",
+      "main_output_variable": "discharge_m",
+      "model_type_name": "NoahOWP_CFE3",
+      "modules": [
+         {
+            "name": "bmi_fortran",
+            "params": {
+               "allow_exceed_end_time": true,
+               "forcing_file": "",
+               "init_config": "NoahOWP_{{id}}.namelist",
+               "library_file": "libsurfacebmi",
+               "main_output_variable": "QINSUR",
+               "model_type_name": "NoahOWP",
+               "name": "bmi_fortran",
+               "variables_names_map": {
+                  "LWDN": "land_surface_radiation~incoming~longwave__energy_flux",
+                  "PRCPNONC": "atmosphere_water__liquid_equivalent_precipitation_rate",
+                  "Q2": "atmosphere_air_water~vapor__relative_saturation",
+                  "SFCPRS": "land_surface_air__pressure",
+                  "SFCTMP": "land_surface_air__temperature",
+                  "SOLDN": "land_surface_radiation~incoming~shortwave__energy_flux",
+                  "UU": "land_surface_wind__x_component_of_velocity",
+                  "VV": "land_surface_wind__y_component_of_velocity"
+               }
+            }
+         },
+         {
+            "name": "bmi_c",
+            "params": {
+               "allow_exceed_end_time": true,
+               "forcing_file": "",
+               "init_config": "CFE3_S_{{id}}.cf3",
+               "library_file": "libcfebmi",
+               "main_output_variable": "discharge_m",
+               "model_type_name": "CFE",
+               "name": "bmi_c",
+               "registration_function": "register_bmi_cfe",
+               "variables_names_map": {
+                  "et_potential_m": "EVAPOTRANS",
+                  "rainfall_depth_m": "QINSUR"
+               }
+            }
+         }
+      ],
+      "name": "bmi_multi"
+   }
+}

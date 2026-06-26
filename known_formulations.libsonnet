@@ -26,6 +26,14 @@ local cfe = r.bmi_c
 local cfe_s = cfe + r.with_init_config('CFE_NASH_S_{{id}}.ini');
 local cfe_x = cfe + r.with_init_config('CFE_NASH_X_{{id}}.ini');
 
+local cfe3 = r.bmi_c
+             + r.bmi_variant('CFE',
+                             'discharge_m',
+                             'libcfebmi',
+                             registration_function='register_bmi_cfe');
+local cfe3_s = cfe3 + r.with_init_config('CFE3_S_{{id}}.cf3');
+local cfe3_x = cfe3 + r.with_init_config('CFE3_X_{{id}}.cf3');
+
 local sacsma = r.bmi_fortran
                + r.bmi_variant('SacSMA',
                                'tci',
@@ -101,6 +109,26 @@ local noahowp_topmodel =
   local modules = [noahowp_mod, topmodel_mod];
   r.MultiBmi(modules=modules, main_output_variable='Qout', model_type_name='NoahOWP_TOPMODEL');
 
+local noahowp_cfe3(cfe3_variant) =
+  local noahowp_vnm = {
+    PRCPNONC: 'atmosphere_water__liquid_equivalent_precipitation_rate',
+    Q2: 'atmosphere_air_water~vapor__relative_saturation',
+    SFCTMP: 'land_surface_air__temperature',
+    UU: 'land_surface_wind__x_component_of_velocity',
+    VV: 'land_surface_wind__y_component_of_velocity',
+    LWDN: 'land_surface_radiation~incoming~longwave__energy_flux',
+    SOLDN: 'land_surface_radiation~incoming~shortwave__energy_flux',
+    SFCPRS: 'land_surface_air__pressure',
+  };
+  local noahowp_mod = noahowp + r.with_variables_names_map(noahowp_vnm);
+  local cfe3_vnm = {
+    et_potential_m: 'EVAPOTRANS',
+    rainfall_depth_m: 'QINSUR',
+  };
+  local cfe3_mod = cfe3_variant + r.with_variables_names_map(cfe3_vnm);
+  local modules = [noahowp_mod, cfe3_mod];
+  r.MultiBmi(modules=modules, main_output_variable='discharge_m', model_type_name='NoahOWP_CFE3');
+
 {
   noahowp:: noahowp,
   topmodel:: topmodel,
@@ -108,12 +136,17 @@ local noahowp_topmodel =
   cfe:: cfe,
   cfe_s:: cfe_s,
   cfe_x:: cfe_x,
+  cfe3:: cfe3,
+  cfe3_s:: cfe3_s,
+  cfe3_x:: cfe3_x,
 
   // multi-bmi canned formulations
   // NOTE: aaraney is there a better separator than '_' to distinguish a
   // specific model variant (e.g. 'cfe_s'). maybe camel case?
   sloth_noahowp_cfe_s:: sloth_nom_cfe(cfe_s),
   sloth_noahowp_cfe_x:: sloth_nom_cfe(cfe_x),
+  noahowp_cfe3_s:: noahowp_cfe3(cfe3_s),
+  noahowp_cfe3_x:: noahowp_cfe3(cfe3_x),
   noahowp_topmodel:: noahowp_topmodel,
   sacsma:: sacsma,
   snow17:: snow17,

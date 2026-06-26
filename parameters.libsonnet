@@ -198,6 +198,186 @@ local cfe_x = {
     },
   ],
 };
+local cfe3_s = {
+  CFE: [
+    // soil_Clapp_Hornberger_b: dimensionless
+    // CFE2 range: 0–21.94, clamped to CFE3 validation bounds: 2.0–15.0
+    {
+      init: 4.05,
+      max: 15.0,
+      min: 2.0,
+      name: 'soil_Clapp_Hornberger_b',
+    },
+    // soil_saturated_hydraulic_conductivity: BMI unit = cm/h
+    // CFE2 'satdk' was in m/s → converted: v3_value = v2_value * 360000
+    {
+      init: 1.2168,
+      max: 510.0,
+      min: 0.01,
+      name: 'soil_saturated_hydraulic_conductivity',
+    },
+    // soil_saturated_capillary_head: BMI unit = cm
+    // CFE2 'satpsi' was in m → converted: v3_value = v2_value * 100
+    {
+      init: 35.5,
+      max: 200.0,
+      min: 0.5,
+      name: 'soil_saturated_capillary_head',
+    },
+    {
+      init: 0.01,
+      max: 1,
+      min: 0,
+      name: 'soil_percolation_rate_limiter',
+    },
+    {
+      init: 0.439,
+      max: 0.7,
+      min: 0.05,
+      name: 'soil_effective_porosity',
+    },
+    {
+      init: 0.016,
+      max: 3.0,
+      min: 0.01,
+      name: 'gw_max_storage_m',
+    },
+    // gw_discharge_coefficient: BMI unit = m/s
+    // CFE2 min: 1.63e-06, clamped to CFE3 validation min: 1.8e-06
+    {
+      init: 2.4530847540782534e-06,
+      max: 1.8e-03,
+      min: 1.8e-06,
+      name: 'gw_discharge_coefficient',
+    },
+    {
+      init: 6,
+      max: 8,
+      min: 1,
+      name: 'gw_discharge_exponent',
+    },
+    // soil_field_capacity_fraction: dimensionless
+    // CFE2 range: 0.1–1.0, clamped to CFE3 validation bounds: 0.14–0.35
+    {
+      init: 0.33,
+      max: 0.35,
+      min: 0.14,
+      name: 'soil_field_capacity_fraction',
+    },
+    {
+      init: 0.03,
+      max: 1,
+      min: 0,
+      name: 'subsurface_nash_K',
+    },
+    {
+      init: 0.01,
+      max: 1,
+      min: 0,
+      name: 'soil_lateral_flow_K',
+    },
+  ],
+};
+local cfe3_x = {
+  CFE: [
+    // soil_Clapp_Hornberger_b: dimensionless
+    // CFE2 range: 0–21.94, clamped to CFE3 validation bounds: 2.0–15.0
+    {
+      init: 4.05,
+      max: 15.0,
+      min: 2.0,
+      name: 'soil_Clapp_Hornberger_b',
+    },
+    // soil_saturated_hydraulic_conductivity: BMI unit = cm/h
+    // CFE2 'satdk' was in m/s → converted: v3_value = v2_value * 360000
+    {
+      init: 1.2168,
+      max: 510.0,
+      min: 0.01,
+      name: 'soil_saturated_hydraulic_conductivity',
+    },
+    // soil_saturated_capillary_head: BMI unit = cm
+    // CFE2 'satpsi' was in m → converted: v3_value = v2_value * 100
+    {
+      init: 35.5,
+      max: 200.0,
+      min: 0.5,
+      name: 'soil_saturated_capillary_head',
+    },
+    {
+      init: 0.01,
+      max: 1,
+      min: 0,
+      name: 'soil_percolation_rate_limiter',
+    },
+    {
+      init: 0.439,
+      max: 0.7,
+      min: 0.05,
+      name: 'soil_effective_porosity',
+    },
+    {
+      init: 0.016,
+      max: 3.0,
+      min: 0.01,
+      name: 'gw_max_storage_m',
+    },
+    // gw_discharge_coefficient: BMI unit = m/s
+    // CFE2 min: 1.63e-06, clamped to CFE3 validation min: 1.8e-06
+    {
+      init: 2.4530847540782534e-06,
+      max: 1.8e-03,
+      min: 1.8e-06,
+      name: 'gw_discharge_coefficient',
+    },
+    {
+      init: 6,
+      max: 8,
+      min: 1,
+      name: 'gw_discharge_exponent',
+    },
+    // soil_field_capacity_fraction: dimensionless
+    // CFE2 range: 0.1–1.0, clamped to CFE3 validation bounds: 0.14–0.35
+    {
+      init: 0.33,
+      max: 0.35,
+      min: 0.14,
+      name: 'soil_field_capacity_fraction',
+    },
+    {
+      init: 0.03,
+      max: 1,
+      min: 0,
+      name: 'subsurface_nash_K',
+    },
+    {
+      init: 0.01,
+      max: 1,
+      min: 0,
+      name: 'soil_lateral_flow_K',
+    },
+    {
+      init: 0,
+      max: 0.49,
+      min: -0.49,
+      name: 'Xinanjiang_inflection_a',
+    },
+    {
+      init: 0.5,
+      max: 1,
+      min: 0,
+      name: 'Xinanjiang_shape_b',
+    },
+    // Xinanjiang_shape_x: dimensionless
+    // CFE2 range: 0–6.04, clamped to CFE3 validation bounds: 0.0–1.0
+    {
+      init: 0.5,
+      max: 1.0,
+      min: 0,
+      name: 'Xinanjiang_shape_x',
+    },
+  ],
+};
 local noahowp = {
   NoahOWP: [
     {
@@ -464,6 +644,8 @@ local snow17 = {
 {
   cfe_s: cfe_s,
   cfe_x: cfe_x,
+  cfe3_s: cfe3_s,
+  cfe3_x: cfe3_x,
   noahowp: noahowp,
   topmodel: topmodel,
   sacsma: sacsma,
