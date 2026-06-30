@@ -1,3 +1,63 @@
+// from: https://github.com/ajkhattak/NextGenSandboxHub/blob/8b300fff242e3364809c9b06679adb3634b42c22/configs/calib_config.yaml
+local casam = {
+  LGAR: [
+    {
+      init: 0.66,
+      max: 0.99,
+      min: 0.01,
+      name: 'spf_factor',
+    },
+    {
+      init: 0.44,
+      max: 0.99,
+      min: 0.01,
+      name: 'frac_to_CR',
+    },
+    {
+      init: -4,
+      max: -1,
+      min: -8,
+      name: 'a',
+    },
+    {
+      init: 2,
+      max: 5,
+      min: 0.5,
+      name: 'b',
+    },
+    {
+      init: 0.45,
+      // NOTE: adjusted per Peter's recommendations may 4 26
+      max: 0.6,
+      min: 0.25,
+      name: 'smcmax_1',
+    },
+    {
+      init: -3,
+      max: -1,
+      min: -5,
+      name: 'van_genuchten_alpha_1',
+    },
+    {
+      init: 0,
+      max: 2,
+      min: -4,
+      name: 'hydraulic_conductivity_1',
+    },
+    {
+      init: 1.5,
+      max: 4,
+      min: 1.01,
+      name: 'van_genuchten_n_1',
+    },
+    {
+      init: 340,
+      max: 500,
+      min: 100,
+      name: 'field_capacity',
+    },
+  ],
+};
 local cfe_s = {
   CFE: [
     {
@@ -642,6 +702,7 @@ local snow17 = {
 };
 
 {
+  casam: casam,
   cfe_s: cfe_s,
   cfe_x: cfe_x,
   cfe3_s: cfe3_s,
