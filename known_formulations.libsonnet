@@ -129,6 +129,66 @@ local noahowp_cfe3(cfe3_variant) =
   local modules = [noahowp_mod, cfe3_mod];
   r.MultiBmi(modules=modules, main_output_variable='discharge_m', model_type_name='NoahOWP_CFE3');
 
+local pet_snow17_sacsma =
+  local snow17_vnm = {
+    precip: 'atmosphere_water__liquid_equivalent_precipitation_rate',
+    tair: 'land_surface_air__temperature',
+  };
+  local snow17_mod = snow17 + r.with_variables_names_map(snow17_vnm);
+
+  local sacsma_vnm = {
+    pet: 'water_potential_evaporation_flux',
+    precip: 'raim',
+    tair: 'land_surface_air__temperature',
+  };
+  local sacsma_mod = sacsma + r.with_variables_names_map(sacsma_vnm);
+
+  local modules = [pet, snow17_mod, sacsma_mod];
+  r.MultiBmi(modules=modules, main_output_variable='tci', model_type_name='PET_Snow17_Sacsma');
+
+local sloth_pet_casam =
+  // use constant for casam's 'soil_temperature_profile' from sloth
+  local sloth_model_params = {
+    'soil_temperature_profile(1,double,K,node)': 275.15,
+  };
+  local sloth_mod = sloth + r.with_model_params(sloth_model_params);
+
+  local casam_vnm = {
+    precipitation_rate: 'atmosphere_water__rainfall_volume_flux',  // csdms: APCP_surface
+    potential_evapotranspiration_rate: 'water_potential_evaporation_flux',  // PET
+  };
+  local casam_mod = casam + r.with_variables_names_map(casam_vnm);
+
+  local modules = [sloth_mod, pet, casam_mod];
+  r.MultiBmi(modules=modules, main_output_variable='total_discharge', model_type_name='Sloth_Pet_Casam');
+
+local sloth_nom_casam =
+  local sloth_model_params = {
+    'soil_temperature_profile(1,double,K,node)': 275.15,
+  };
+  local sloth_mod = sloth + r.with_model_params(sloth_model_params);
+
+  local noahowp_vnm = {
+    PRCPNONC: 'atmosphere_water__liquid_equivalent_precipitation_rate',
+    Q2: 'atmosphere_air_water~vapor__relative_saturation',
+    SFCTMP: 'land_surface_air__temperature',
+    UU: 'land_surface_wind__x_component_of_velocity',
+    VV: 'land_surface_wind__y_component_of_velocity',
+    LWDN: 'land_surface_radiation~incoming~longwave__energy_flux',
+    SOLDN: 'land_surface_radiation~incoming~shortwave__energy_flux',
+    SFCPRS: 'land_surface_air__pressure',
+  };
+  local noahowp_mod = noahowp + r.with_variables_names_map(noahowp_vnm);
+
+  local casam_vnm = {
+    precipitation_rate: 'QINSUR',
+    potential_evapotranspiration_rate: 'EVAPOTRANS',
+  };
+  local casam_mod = casam + r.with_variables_names_map(casam_vnm);
+
+  local modules = [sloth_mod, noahowp_mod, casam_mod];
+  r.MultiBmi(modules=modules, main_output_variable='total_discharge', model_type_name='Sloth_NoahOWP_Casam');
+
 {
   noahowp:: noahowp,
   topmodel:: topmodel,
@@ -148,6 +208,9 @@ local noahowp_cfe3(cfe3_variant) =
   noahowp_cfe3_s:: noahowp_cfe3(cfe3_s),
   noahowp_cfe3_x:: noahowp_cfe3(cfe3_x),
   noahowp_topmodel:: noahowp_topmodel,
+  pet_snow17_sacsma:: pet_snow17_sacsma,
+  sloth_pet_casam:: sloth_pet_casam,
+  sloth_noahowp_casam:: sloth_nom_casam,
   sacsma:: sacsma,
   snow17:: snow17,
   casam:: casam,
