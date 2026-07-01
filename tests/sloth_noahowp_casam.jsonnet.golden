@@ -1,0 +1,66 @@
+{
+   "name": "bmi_multi",
+   "params": {
+      "allow_exceed_end_time": true,
+      "forcing_file": "",
+      "init_config": "",
+      "main_output_variable": "total_discharge",
+      "model_type_name": "Sloth_NoahOWP_Casam",
+      "modules": [
+         {
+            "name": "bmi_c++",
+            "params": {
+               "allow_exceed_end_time": true,
+               "forcing_file": "",
+               "init_config": "/dev/null",
+               "library_file": "libslothmodel",
+               "main_output_variable": "z",
+               "model_params": {
+                  "soil_temperature_profile(1,double,K,node)": 275.14999999999998
+               },
+               "model_type_name": "SLOTH",
+               "name": "bmi_c++"
+            }
+         },
+         {
+            "name": "bmi_fortran",
+            "params": {
+               "allow_exceed_end_time": true,
+               "forcing_file": "",
+               "init_config": "NoahOWP_{{id}}.namelist",
+               "library_file": "libsurfacebmi",
+               "main_output_variable": "QINSUR",
+               "model_type_name": "NoahOWP",
+               "name": "bmi_fortran",
+               "variables_names_map": {
+                  "LWDN": "land_surface_radiation~incoming~longwave__energy_flux",
+                  "PRCPNONC": "atmosphere_water__liquid_equivalent_precipitation_rate",
+                  "Q2": "atmosphere_air_water~vapor__relative_saturation",
+                  "SFCPRS": "land_surface_air__pressure",
+                  "SFCTMP": "land_surface_air__temperature",
+                  "SOLDN": "land_surface_radiation~incoming~shortwave__energy_flux",
+                  "UU": "land_surface_wind__x_component_of_velocity",
+                  "VV": "land_surface_wind__y_component_of_velocity"
+               }
+            }
+         },
+         {
+            "name": "bmi_c++",
+            "params": {
+               "allow_exceed_end_time": true,
+               "forcing_file": "",
+               "init_config": "Casam_{{id}}.ini",
+               "library_file": "liblasambmi",
+               "main_output_variable": "total_discharge",
+               "model_type_name": "LGAR",
+               "name": "bmi_c++",
+               "variables_names_map": {
+                  "potential_evapotranspiration_rate": "EVAPOTRANS",
+                  "precipitation_rate": "QINSUR"
+               }
+            }
+         }
+      ],
+      "name": "bmi_multi"
+   }
+}

@@ -1,0 +1,59 @@
+{
+   "name": "bmi_multi",
+   "params": {
+      "allow_exceed_end_time": true,
+      "forcing_file": "",
+      "init_config": "",
+      "main_output_variable": "tci",
+      "model_type_name": "PET_Snow17_Sacsma",
+      "modules": [
+         {
+            "name": "bmi_c",
+            "params": {
+               "allow_exceed_end_time": true,
+               "forcing_file": "",
+               "init_config": "PET_{{id}}.ini",
+               "library_file": "libpetbmi",
+               "main_output_variable": "water_potential_evaporation_flux",
+               "model_type_name": "PET",
+               "name": "bmi_c",
+               "registration_function": "register_bmi_pet"
+            }
+         },
+         {
+            "name": "bmi_fortran",
+            "params": {
+               "allow_exceed_end_time": true,
+               "forcing_file": "",
+               "init_config": "Snow17_{{id}}.namelist",
+               "library_file": "libsnow17bmi",
+               "main_output_variable": "raim",
+               "model_type_name": "Snow17",
+               "name": "bmi_fortran",
+               "variables_names_map": {
+                  "precip": "atmosphere_water__liquid_equivalent_precipitation_rate",
+                  "tair": "land_surface_air__temperature"
+               }
+            }
+         },
+         {
+            "name": "bmi_fortran",
+            "params": {
+               "allow_exceed_end_time": true,
+               "forcing_file": "",
+               "init_config": "SacSma_{{id}}.namelist",
+               "library_file": "libsacbmi",
+               "main_output_variable": "tci",
+               "model_type_name": "SacSMA",
+               "name": "bmi_fortran",
+               "variables_names_map": {
+                  "pet": "water_potential_evaporation_flux",
+                  "precip": "raim",
+                  "tair": "land_surface_air__temperature"
+               }
+            }
+         }
+      ],
+      "name": "bmi_multi"
+   }
+}
