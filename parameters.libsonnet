@@ -478,6 +478,36 @@ local noahowp = {
     },
   ],
 };
+# when running with stomatal_resistance_option = 4 in init-config i.e.maximized transpiration 
+# don't calibrate VCMX25 or MP  because they are inactive
+local noahowp_pet = {
+  NoahOWP: [
+    {
+      init: 2.5,
+      max: 4,
+      min: 1,
+      name: 'MFSNO',
+    },
+    {
+      init: 1,
+      max: 1,
+      min: 0.69999999999999996,
+      name: 'SCAMAX',
+    },
+    {
+      init: 50,
+      max: 100,
+      min: 0.10000000000000001,
+      name: 'RSURF_SNOW',
+    },
+    {
+      init: 1,
+      max: 5,
+      min: 0.17999999999999999,
+      name: 'CWP',
+    },
+  ],
+};
 local topmodel = {
   TOPMODEL: [
     {
@@ -708,6 +738,7 @@ local snow17 = {
   cfe3_s: cfe3_s,
   cfe3_x: cfe3_x,
   noahowp: noahowp,
+  noahowp_pet: noahowp_pet,
   topmodel: topmodel,
   sacsma: sacsma,
   snow17: snow17,
