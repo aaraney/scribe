@@ -1,0 +1,13 @@
+{
+   "name": "bmi_c",
+   "params": {
+      "allow_exceed_end_time": true,
+      "forcing_file": "",
+      "init_config": "Topmodel_{{id}}.dat",
+      "library_file": "libtopmodelbmi",
+      "main_output_variable": "Qout",
+      "model_type_name": "TOPMODEL",
+      "name": "bmi_c",
+      "registration_function": "register_bmi_topmodel"
+   }
+}

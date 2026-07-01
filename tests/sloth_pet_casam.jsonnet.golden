@@ -1,0 +1,57 @@
+{
+   "name": "bmi_multi",
+   "params": {
+      "allow_exceed_end_time": true,
+      "forcing_file": "",
+      "init_config": "",
+      "main_output_variable": "total_discharge",
+      "model_type_name": "Sloth_Pet_Casam",
+      "modules": [
+         {
+            "name": "bmi_c++",
+            "params": {
+               "allow_exceed_end_time": true,
+               "forcing_file": "",
+               "init_config": "/dev/null",
+               "library_file": "libslothmodel",
+               "main_output_variable": "z",
+               "model_params": {
+                  "soil_temperature_profile(1,double,K,node)": 275.14999999999998
+               },
+               "model_type_name": "SLOTH",
+               "name": "bmi_c++"
+            }
+         },
+         {
+            "name": "bmi_c",
+            "params": {
+               "allow_exceed_end_time": true,
+               "forcing_file": "",
+               "init_config": "PET_{{id}}.ini",
+               "library_file": "libpetbmi",
+               "main_output_variable": "water_potential_evaporation_flux",
+               "model_type_name": "PET",
+               "name": "bmi_c",
+               "registration_function": "register_bmi_pet"
+            }
+         },
+         {
+            "name": "bmi_c++",
+            "params": {
+               "allow_exceed_end_time": true,
+               "forcing_file": "",
+               "init_config": "Casam_{{id}}.ini",
+               "library_file": "liblasambmi",
+               "main_output_variable": "total_discharge",
+               "model_type_name": "LGAR",
+               "name": "bmi_c++",
+               "variables_names_map": {
+                  "potential_evapotranspiration_rate": "water_potential_evaporation_flux",
+                  "precipitation_rate": "atmosphere_water__rainfall_volume_flux"
+               }
+            }
+         }
+      ],
+      "name": "bmi_multi"
+   }
+}
