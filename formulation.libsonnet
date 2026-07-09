@@ -158,4 +158,12 @@ local pathlib = import 'pathlib.libsonnet';
       init_config: pathlib.joinPath(init_config_dir, init_config_name),
     },
   },
+
+  with_init_config_name(name):: {
+    // replace `init_config` filename
+    local init_config_dir = pathlib.dirname(super.params.init_config),
+    params+: {
+      init_config: pathlib.joinPath(init_config_dir, name),
+    },
+  },
 }
